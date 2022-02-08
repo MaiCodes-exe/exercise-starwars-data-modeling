@@ -51,7 +51,8 @@ __tablename__="planets"
 Class Favourites()
 __tablename__="favourites"
     id= column(Integer, primary_key=True)
-    name
+    name= column(String(200))
+    favourites_id(column(Integer,ForeignKey("favourites_id"))
 
 Class User()
 __tablename__="user"
