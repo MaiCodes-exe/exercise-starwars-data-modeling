@@ -51,15 +51,15 @@ __tablename__="planets"
 Class Favourites()
 __tablename__="favourites"
     id= db.Column(Integer, primary_key=True)
-    name= db.Column(String(200))
+    name= db.Column(db.String(200))
     favourites_id(db.Column(Integer,ForeignKey("favourites_id"))
+
 
 Class User()
 __tablename__="user"
     id = db.Column('user_id', db.Integer, primary_key = True)
    name = db.Column(db.String(100))
    password = db.Column(db.String(50))  
-   pin = db.Column(db.Integer(10))
 
 
     def to_dict(self):
