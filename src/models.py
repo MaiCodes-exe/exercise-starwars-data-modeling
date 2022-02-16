@@ -1,6 +1,6 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String, Primarykey
+from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -26,40 +26,45 @@ Base = declarative_base()
 #     person_id = Column(Integer, ForeignKey('person.id'))
 #     person = relationship(Person)
 
-Class People()
-__tablename__="people"
-    id= db.Column(Integer, primary_key=True)
-    name= db.Column(String(200))
-    height= db.Column(Integer(100))
-    mass= db.Column(Integer(200))
-    gender= db.Column(String(50))
-    birth_year= db.Column(Integer(50))
-    people_id= db.Column(Integer, ForeignKey('people.id'))
+class People(Base):
+    __tablename__="people"
+    id= Column(Integer, primary_key=True)
+    name= Column(String(200))
+    height= Column(Integer)
+    mass= Column(Integer)
+    gender= Column(String(50))
+    birth_year= Column(Integer)
 
-Class Planets()    
-__tablename__="planets"
-    id= db.Column(Integer, primary_key=True)
-    name= db.Column(String(200))
-    mass= db.Column(Integer(200))
-    climate= db.Column(String(200))
-    orbit= db.Column(Integer(200))
-    gravity= db.Column(Integer(200))
-    terrain= db.Column(String(200))
-    population= db.Column(Integer(200))
-    planets_id= db.Column(Integer, ForeignKey('planets.id'))
+class Planets(Base):   
+    __tablename__="planets"
+    id= Column(Integer, primary_key=True)
+    name= Column(String(200))
+    mass= Column(Integer)
+    climate= Column(String(200))
+    orbit= Column(Integer)
+    gravity= Column(Integer)
+    terrain= Column(String(200))
+    population= Column(Integer)
 
-Class Favourites()
-__tablename__="favourites"
-    id= db.Column(Integer, primary_key=True)
-    name= db.Column(db.String(200))
-    favourites_id(db.Column(Integer,ForeignKey("favourites_id"))
+class FavouritePlanets(Base):
+    __tablename__="favouriteplanets"
+    id= Column(Integer, primary_key=True)
+    name= Column(String(200))
+    user_id= Column(Integer, ForeignKey('user.id'))
+    planets_id= Column(Integer, ForeignKey('planets.id'))
 
+class FavouritePeople(Base):
+    __tablename__="favouritepeople"
+    id= Column(Integer, primary_key=True)
+    name= Column(String(200))
+    user_id= Column(Integer, ForeignKey('user.id'))
+    people_id= Column(Integer, ForeignKey('people.id'))
 
-Class User()
-__tablename__="user"
-    id = db.Column('user_id', db.Integer, primary_key = True)
-   name = db.Column(db.String(100))
-   password = db.Column(db.String(50))  
+class User(Base):
+    __tablename__="user"
+    id = Column(Integer, primary_key = True)
+    name = Column(String(100))
+    password = Column(String(50))  
 
 
     def to_dict(self):
