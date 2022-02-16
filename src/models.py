@@ -52,6 +52,8 @@ class FavouritePlanets(Base):
     name= Column(String(200))
     user_id= Column(Integer, ForeignKey('user.id'))
     planets_id= Column(Integer, ForeignKey('planets.id'))
+    FavouritePlanets = relationship(user_id)
+
 
 class FavouritePeople(Base):
     __tablename__="favouritepeople"
@@ -59,6 +61,8 @@ class FavouritePeople(Base):
     name= Column(String(200))
     user_id= Column(Integer, ForeignKey('user.id'))
     people_id= Column(Integer, ForeignKey('people.id'))
+    FavouritePeople = relationship(user_id)
+
 
 class User(Base):
     __tablename__="user"
